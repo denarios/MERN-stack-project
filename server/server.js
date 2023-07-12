@@ -1,6 +1,6 @@
 const express =require ('express');
 const app=express();
-// const {generrateFile}=require('./generateFile')
+const {generrateFile}=require('./generateFile')
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.get("/",(req,res)=>{
@@ -15,9 +15,10 @@ app.post("/run",(req,res)=>{
     {
         return res.status(404).json({success :false,error:""});
     }
-    // const filePath=generrateFile(language,code);
+    const filePath=generrateFile(language,code);
+    // console.log(filePath);
     res.json({language,code})
-    // res.json(req.body);
+//    0og(language);
 });
 app.listen(8000,()=>{
     console.log("Server is listening on port 8000");
