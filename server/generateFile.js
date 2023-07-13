@@ -7,7 +7,7 @@ if(!fs.existsSync(dirCodes)){
     fs.mkdirSync(dirCodes,{recursive:true});
 }
 // console.log(dirCodes);
-const generrateFile=async(format,content) => {
+const generateFile=async(format,content) => {
   const jobId=uuid();
   const fileName=`${jobId}.${format}`;
   const filePath=path.join(dirCodes,fileName);
@@ -16,5 +16,5 @@ const generrateFile=async(format,content) => {
   return filePath;
 };
 module.exports={
-    generrateFile,
+    generateFile,
 }
