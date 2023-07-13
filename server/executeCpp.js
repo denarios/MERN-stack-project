@@ -15,7 +15,6 @@ const executeCpp=(filePath)=>{
     exec(
     `g++ ${filePath} -o ${outPath} && cd ${outputPath} && .\\${jobId}.exe `,
      (error,stdout,stderr) =>{
-      // console.log(error);
        if(error){
         reject({error,stderr});
        }
@@ -29,3 +28,4 @@ const executeCpp=(filePath)=>{
 module.exports={
     executeCpp,
 }
+
