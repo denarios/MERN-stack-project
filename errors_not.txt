@@ -1,0 +1,7 @@
+                                                //    ERROR IN MY PROJECT
+      in server .js
+                                                
+// return res.status(404).json({ success: false, error: "" });
+// catch (error) {
+//         return res.status(500).json({ success: false, error: error.message });
+//     }
