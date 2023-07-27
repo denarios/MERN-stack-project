@@ -15,12 +15,12 @@ loginRoute.post("/login",async(req,res)=>{
        const matchPassword=await bcrypt.compare(password,existingUser.password);
        if(!matchPassword)
        {
-        return res.status(404).json({message:"Invalid credintail"});
+        return res.status(405).json({message:"Invalid credintail"});
        }
        const token=jwt.sign({email:existingUser.email,id:existingUser._id},SECERET_KEY)
-       res.status(201).json({user:existingUser,token:token});
+       res.status(201).json({token:token});
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).json({message:"something went word in Login route"});
     }
 })

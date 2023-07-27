@@ -20,7 +20,7 @@ registrationRouter.post("/register",async(req, res) => {
         })
         // console.log(result._id);
         const token=jwt.sign({email:result.email,id:result._id},SECERET_KEY)
-        res.status(201).json({user:result,token:token});
+        res.status(201).json({token:token});
     } catch (error) {
         console.log(error);
         res.send(500).json({message:"something went word in register route"});

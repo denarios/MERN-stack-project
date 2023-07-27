@@ -1,21 +1,24 @@
+// authMiddleware.js
 import jwt from 'jsonwebtoken';
-const SECERET_KEY="NOTESAPI"
-const auth =(req,res,next)=>{
-   try {
-    let token=req.header.authorization;
-    if(token){
-        token=token.split(" ")[1];
-        let user=jwt.verify(token,SECERET_KEY);
-        req.userId=user.id;
 
+const SECRET_KEY = "NOTESAPI";
+
+const authMiddleware = (req, res, next) => {
+  try {
+    let token = req.headers.authorization;
+
+    if (token) {
+      token = token.split(" ")[1];
+      const user = jwt.verify(token, SECRET_KEY);
+      req.userId = user.id;
+      next();
+    } else {
+      res.status(401).json({ message: "Unauthorized User" });
     }
-    else{
-        res.status(401).json({meassage:"unothorize User"});
-    }
-    next();
-   } catch (error) {
+  } catch (error) {
     console.log(error);
-    res.status(401).json({message:"unothorize user"});
-   } 
-}
-export default auth;
+    res.status(401).json({ message: "Unauthorized User" });
+  }
+};
+
+export default authMiddleware;

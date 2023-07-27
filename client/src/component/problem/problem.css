@@ -1,0 +1,36 @@
+/* problem.css */
+
+/* Styles for the problem-page */
+.problem-page {
+    padding: 20px;
+    background-color: #f0f0f0; /* Change background color of the entire page as desired */
+  }
+  
+  /* Styles for the problem-container */
+  .problem-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  /* Styles for the problem-item */
+  .problem-item {
+    background-color: #f5f5f5; /* Change background color of the problem item as desired */
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 250px; /* Set the width of each item as needed */
+  }
+  
+  /* Styles for the problem link */
+  .problem-item a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    display: block;
+  }
+  
+  /* Styles for the problem link on hover */
+  .problem-item a:hover {
+    text-decoration: underline;
+  }
+  

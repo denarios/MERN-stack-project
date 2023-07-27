@@ -4,8 +4,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 const __executeCpp = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__executeCpp);
-import { stderr, stdout } from 'process'
-import { v4 as uuid } from 'uuid';
 const outputPath = path.join(__dirname, 'output');
 console.log(outputPath);
 if (!fs.existsSync(outputPath)) {

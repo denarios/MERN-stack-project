@@ -1,28 +1,31 @@
-import { readFile } from 'fs/promises';
+import { promises as fsPromises } from 'fs';
 import crypto from 'crypto';
 
 // Function to calculate the MD5 hash of a file
-function calculateMD5(content) {
-  const hash = crypto.createHash('md5').update(content);
-  return hash.digest('hex');
+async function calculateFileMD5(filePath) {
+  try {
+    const fileData = await fsPromises.readFile(filePath, 'utf8');
+    console.log(fileData);
+    const md5Hash = crypto.createHash('md5').update(fileData).digest('hex');
+    return md5Hash;
+  } catch (error) {
+    throw new Error(`Error reading file or calculating MD5 hash: ${error.message}`);
+  }
 }
 
 // Function to compare two files based on their MD5 hashes
-async function compareFiles(file1Path, file2Path) {
+async function compareFiles(verdictFilePath, generatedCodeFilePath) {
   try {
-    const data1 = await readFile(file1Path, 'utf8');
-    const data2 = await readFile(file2Path, 'utf8');
+    const verdictMD5 = await calculateFileMD5(verdictFilePath);
+    const generatedCodeMD5 = await calculateFileMD5(generatedCodeFilePath);
+    console.log(verdictFilePath);
+    console.log(generatedCodeFilePath);
+    console.log('Verdict File MD5:', verdictMD5);
+    console.log('Generated Code File MD5:', generatedCodeMD5);
 
-    // Compare the MD5 hash of the two files' content
-    const md5File1 = await calculateMD5(data1);
-    const md5File2 = await calculateMD5(data2);
-
-    console.log('File 1 MD5:', md5File1);
-    console.log('File 2 MD5:', md5File2);
-
-    return md5File1 === md5File2;
+    return verdictMD5 === generatedCodeMD5;
   } catch (error) {
-    throw new Error(`Error reading files or comparing contents: ${error.message}`);
+    throw new Error(`Error comparing files: ${error.message}`);
   }
 }
 

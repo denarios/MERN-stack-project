@@ -1,37 +1,25 @@
-import {useState} from 'react'
 import './App.css';
-
+import { BrowserRouter as Router,Routes,Route} from "react-router-dom";
+import HomePage from './component/homepage/homepage';
+import Login from './component/login/login';
+import Register from './component/register/register';
+import ProblemName from './component/problem/problem';
+import ProblemIdPage from './component/problemid/problemid';
+import ProblemSubmission from './component/problemSubmitted/problemSubmitted';
 function App() {
-  const [name,setName]=useState('')
-  const [email,setEmail]=useState('')
-  const [password,setPassword]=useState('')
   return (
-   <>
-   <h1>Register</h1>
-   <form>
-    <input 
-    value={name}
-    onChange={(e)=>setName(e.target.value)}
-    type='text'
-    placeholder='Name'
-    />
-    <input 
-    value={email}
-    onChange={(e)=>setEmail(e.target.value)}
-    type='email'
-    placeholder='Eamil'
-    />
-    <input 
-    value={password}
-    onChange={(e)=>setPassword(e.target.value)}
-    type='password'
-    placeholder='password'
-    />
-    <br/>
-    <input type='submit' value='register'/>
-   </form>
-   </>
+    <div className='App'>
+      <Router>
+        <Routes>
+          <Route path='/' element={< HomePage/>}/>
+          <Route path='/login' element={< Login/>}/>
+          <Route path='/register' element={< Register/>}/>
+          <Route path='/problem' element={< ProblemName/>}/>
+          <Route path='/problem/:id' element={< ProblemIdPage/>}/>
+          <Route path='/problem/:id/submission' element={< ProblemSubmission/>}/>
+        </Routes>
+      </Router>
+    </div>
   );
 }
-
 export default App;
