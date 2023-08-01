@@ -10,6 +10,7 @@ import authMiddleware from './middleware.js/auth.js';
 import problemNameRouter from './route/problem.js';
 import ProblemidRouter from './route/problemid.js';
 import ProblemSubmittedRouter from './route/problemSubmitted.js';
+import ProblemSubmissionCodeRouter from './route/problemSubmission.js';
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
@@ -21,6 +22,7 @@ app.use("/",authMiddleware,problemNameRouter);
 app.use("/",authMiddleware,coderunRoute);
 app.use("/",authMiddleware,getInputFilerouter);
 app.use("/",authMiddleware,ProblemSubmittedRouter);
+app.use("/",authMiddleware,ProblemSubmissionCodeRouter);
 app.listen(8000, () => {
     console.log("Server is listening on port 8000");
 });

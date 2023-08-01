@@ -6,6 +6,7 @@ import Register from './component/register/register';
 import ProblemName from './component/problem/problem';
 import ProblemIdPage from './component/problemid/problemid';
 import ProblemSubmission from './component/problemSubmitted/problemSubmitted';
+import ProblemSubmissionCode from './component/problemSubmission/problemSubmission';
 function App() {
   return (
     <div className='App'>
@@ -17,6 +18,7 @@ function App() {
           <Route path='/problem' element={< ProblemName/>}/>
           <Route path='/problem/:id' element={< ProblemIdPage/>}/>
           <Route path='/problem/:id/submission' element={< ProblemSubmission/>}/>
+          <Route path='/problem/submission/:id' element={< ProblemSubmissionCode/>}/>
         </Routes>
       </Router>
     </div>

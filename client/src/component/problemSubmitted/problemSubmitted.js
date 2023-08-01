@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './problemSubmission.css'; // Import the CSS file
 
 const ProblemSubmission = () => {
@@ -26,7 +27,8 @@ const ProblemSubmission = () => {
       {submissionData.length > 0 ? (
           submissionData.map((problem) => (
             <div key={problem._id} className="problem-item">
-              <div>{problem._id}</div>
+              <Link to={`/problem/submission/${problem._id}`}>{problem._id}</Link>
+              {/* <div>{problem._id}</div> */}
               <div>{problem.status}</div>
             </div>
           ))
