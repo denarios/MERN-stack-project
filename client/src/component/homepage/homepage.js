@@ -9,6 +9,10 @@ const HomePage = () => {
   const handleLoginClick = () => {
     navigate('/login'); // Redirect to the /login route when the button is clicked
   };
+  const handleRegisterClick = () => {
+    navigate('/register'); // Redirect to the /register route when the button is clicked
+  };
+
 
   return (
     <div>
@@ -28,11 +32,20 @@ const HomePage = () => {
               <li>
                 <a href="/contact">Contact</a>
               </li>
+              <li>
+                <div className="login">
+                  {/* Attach the handleLoginClick function to the onClick event */}
+                  <button onClick={handleLoginClick}>Login</button>
+                </div>
+              </li>
+              <li>
+                <div className="login">
+                  {/* Attach the handleLoginClick function to the onClick event */}
+                  <button onClick={handleRegisterClick}>Register</button>
+                </div>
+              </li>
             </ul>
-            <div className="login">
-              {/* Attach the handleLoginClick function to the onClick event */}
-              <button onClick={handleLoginClick}>Login</button>
-            </div>
+            
           </div>
         </nav>
       </header>

@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './login.css';
 import { useNavigate  } from 'react-router-dom'; 
+import Navigationbar from '../navgiation/navigation';
 const Login = () => {
+  const navigate = useNavigate(); // Initialize the useNavigate hook
   const [formData, setFormData] = useState({
     email: '', // Change 'username' to 'email'
     password: '',
@@ -14,6 +16,9 @@ const Login = () => {
       ...prevFormData,
       [name]: value,
     }));
+  };
+  const handleRegisterClick = () => {
+    navigate('/register'); // Redirect to the /register route when the button is clicked
   };
 
   const handleSubmit = async (event) => {
@@ -42,6 +47,13 @@ const Login = () => {
   };
 
   return (
+    <>
+      {/* navbar */}
+        <div>
+          <nav clasName='navbar'>
+              <Navigationbar/>
+          </nav>  
+        </div>
     <div className="login-page">
       <div className="login-container">
         <h2 className="login-title">Login</h2>
@@ -71,9 +83,12 @@ const Login = () => {
           <button className="login-btn" type="submit">
             Login
           </button>
+          <button className="login-btn register-btn" onClick={handleRegisterClick}>Register</button>
+          
         </form>
       </div>
     </div>
+    </>
   );
 };
 
