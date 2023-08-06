@@ -9,8 +9,10 @@ const ProblemIdPage = () => {
 
   const { id } = useParams();
   const [problemData, setProblemData] = useState([]);
+  const [inputTestcase, setInputTestcase] = useState('');
   const [language, setLanguage] = useState('');
   const [code, setCode] = useState('');
+  const [outputData, setOutputData] = useState('');
   const navigate = useNavigate();
 
   const fetchData = useCallback(async () => {
@@ -34,7 +36,9 @@ const ProblemIdPage = () => {
   const handleCodeChange = (e) => {
     setCode(e.target.value);
   };
-
+  const handleInputTestcaseChange = (e) => {
+    setInputTestcase(e.target.value);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Here, you can send the language and code to the server for submission
@@ -53,6 +57,25 @@ const ProblemIdPage = () => {
       console.error('Failed to submit the code:', error.message);
       // You may want to show an error message to the user
       alert('Submission failed!');
+    }
+  };
+  const handleRun = async () => {
+    // Here, you can send the language, code, and inputTestcase to the server for running the code
+    try {
+      const response = await axios.post(`http://localhost:8000/problem/run`, {
+        language,
+        code,
+        input: inputTestcase, // Send the inputTestcase as 'input' to the server
+      });
+      console.log('Run response:', response.data);
+      // const outputData = response.data;
+      // console.log(typeof outputData);
+    // Update the state with the output data
+     setOutputData(response.data.outputData);
+      // Handle the response from the server if needed
+    } catch (error) {
+      console.error('Failed to run the code:', error.message);
+      // Show an error message to the user if needed
     }
   };
 
@@ -122,7 +145,25 @@ const ProblemIdPage = () => {
               onChange={handleCodeChange}
             />
           </div>
-          <button type="run">Run</button>
+          <div className="form-group">
+            <label className="label" htmlFor="inputTestcase">
+             input:
+            </label>
+            <textarea
+              id="inputTestcase"
+              rows="3"
+              value={inputTestcase}
+              onChange={handleInputTestcaseChange}
+            />
+          </div>
+          {/* Display the output in a separate div container */}
+          {outputData && (
+            <div className="output-container">
+              <h3>Output:</h3>
+              <pre>{outputData}</pre>
+            </div>
+          )}
+          <button type="button" onClick={handleRun}>Run</button>
           <button type="submit">Submit</button>
           <button className="submission-button" onClick={handleSubmissionButtonClick}>
             My Submission
