@@ -27,7 +27,7 @@ CoderunningRoute.post("/problem/run", async (req, res) => {
     await fs.unlink(inputFile);
     await fs.unlink(output);
 
-    console.log(outputdataString);
+    // console.log(outputdataString);
     return res.status(200).json({ outputData: outputdataString });
   } catch (error) {
     return res.status(500).json({ success: false, error: error.message });
