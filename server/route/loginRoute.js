@@ -18,10 +18,17 @@ loginRoute.post("/login",async(req,res)=>{
         return res.status(405).json({message:"Invalid credintail"});
        }
        const token=jwt.sign({email:existingUser.email,id:existingUser._id},SECERET_KEY)
-       res.status(201).json({token:token});
+       const obj={
+        Id:existingUser._id,
+        ImageName : existingUser.ImageName,
+        email : existingUser.email,
+        name : existingUser.name
+       }
+       console.log(obj);
+       return res.status(201).json({ message: { token: token, obj: obj } });
     } catch (error) {
         // console.log(error);
-        res.status(500).json({message:"something went word in Login route"});
+        return res.status(500).json({message:"something went word in Login route"});
     }
 })
 export default loginRoute;

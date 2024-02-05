@@ -12,15 +12,15 @@ coderunRoute.post("/problem/submit/:id", async (req, res) => {
   const finding = await Submission.findById(req.params.id);
   const inputFile = await finding.inputFile;
   const verdictFile = await finding.verdictFile;
-  
-  const { language = 'cpp', code } = req.body;
+  console.log("USER ID =",userId);
+  const { language , code } = req.body;
   if (code === undefined) {
     return res.status(400).json({ message: "empty code" });
   }
 
   try {
     const filePath = await generateFile(language, code);
-    const output = await executeCpp(filePath, inputFile);
+    const output = await executeCpp(filePath, inputFile,language);
     const compare = await compareFiles(verdictFile, output);
 
     let status;
@@ -34,6 +34,7 @@ coderunRoute.post("/problem/submit/:id", async (req, res) => {
       id: req.params.id,
       path: output,
       status: status,
+      UserID:userId
     });
 
     return res.status(200).json({ message: status });

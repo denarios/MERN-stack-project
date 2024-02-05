@@ -1,5 +1,7 @@
 /* problemid.css */
-
+.boxWrapper{
+  margin: 5vh;
+}
 .problem-id-page {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -8,6 +10,7 @@
 
 .problem-details {
   max-width: 600px;
+  margin-left: 3vh;
 }
 
 .problem-description {

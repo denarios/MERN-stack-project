@@ -13,13 +13,14 @@ CoderunningRoute.post("/problem/run", async (req, res) => {
     return res.status(201).json({ message: "empty code" });
   }
   try {
+    console.log(input);
     const inputFile = await inputFileRun(input);
     console.log(inputFile);
 
     const filePath = await generateFile(language, code);
     console.log(filePath);
 
-    const output = await executeCpp(filePath, inputFile);
+    const output = await executeCpp(filePath, inputFile,language);
     console.log(output);
     const outputdataBuffer = await fs.readFile(output);
     const outputdataString = outputdataBuffer.toString();

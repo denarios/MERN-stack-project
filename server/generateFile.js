@@ -12,7 +12,16 @@ if(!fs.existsSync(dirCodes)){
 // console.log(dirCodes);
 const generateFile=async(format,content) => {
   const jobId=uuid();
-  const fileName=`${jobId}.${format}`;
+  let a='';
+  if(format=='cpp')
+  {
+    a='cpp';
+  }
+  else if(format=='python')
+  {
+    a='py'
+  }
+  const fileName=`${jobId}.${a}`;
   const filePath=path.join(dirCodes,fileName);
   fs.writeFileSync(filePath,content);
   await fs.writeFileSync(filePath,content);

@@ -5,10 +5,10 @@ const TestCaseSchema = new mongoose.Schema({
 });
 const SubmissionSchema = new mongoose.Schema({
   name: String,
-  email: String,
   description: String,
   inputFile: String,
   verdictFile: String,
+  status: String,
   testCases: [TestCaseSchema], 
 });
 const Submission = new mongoose.model('Submission', SubmissionSchema);

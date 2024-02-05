@@ -14,7 +14,7 @@ const inputfilePath=async(format) => {
   const fileName=`${jobId}.txt`
   const filePath=path.join(dirCodes,fileName);
   fs.writeFileSync(filePath,format);
-  await fs.writeFileSync(filePath,format);
+  fs.writeFileSync(filePath,format);
   return filePath;
 };
 export default inputfilePath;

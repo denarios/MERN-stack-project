@@ -16,7 +16,8 @@ registrationRouter.post("/register",async(req, res) => {
         const result=await User.create({
             name:name,
             email:email,
-            password:hashedPassword
+            password:hashedPassword,
+            ImageName:null
         })
         // console.log(result._id);
         const token=jwt.sign({email:result.email,id:result._id},SECERET_KEY)

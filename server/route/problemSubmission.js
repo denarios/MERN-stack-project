@@ -16,15 +16,11 @@ ProblemSubmissionCodeRouter.get('/problem/submission/:id', async (req, res) => {
         const filePath = submission.path;
         console.log(filePath);
         // Read the file content
-        await fs.readFile(filePath, (err, data) => {
-            if (err) {
-                return res.status(500).json({ message: 'Error reading the file.' });
-            }
-
-            // Assuming the file is a text file, you can set the appropriate content type
-            res.setHeader('Content-Type', 'text');
-            // Send the file content to the UI
-            res.send(data);
+        const outputdataBuffer =  await fs.readFile(filePath, (err, data) => {
+            const outputdataString = outputdataBuffer.toString();
+          console.log(outputdataString);
+            // console.log(outputdataString);
+            return res.status(200).json({ outputData: outputdataString });
         });
     } catch (error) {
         res.status(500).json({ message: 'Server error.' });

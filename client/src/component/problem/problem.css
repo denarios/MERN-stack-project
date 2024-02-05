@@ -5,14 +5,19 @@
   align-items: center;
   justify-content: center;
 }
-
+.problem-List{
+  height: 87vh;
+  background-image: url(../../../Images/problempageImage.jpg);
+}
 .problem-item {
   margin: 10px;
-  padding: 15px;
+  padding: 10px;
   background-color: #f0f0f0;
-  border-radius: 8px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
+  background-color: gray;
+  border: 2px solid #333;
 }
 
 .problem-number {
@@ -24,7 +29,7 @@
 .problem-name {
   text-decoration: none;
   font-size: 18px;
-  color: #333;
+  color: yellow;
 }
 .problem-name:hover {
   color: #007bff;
